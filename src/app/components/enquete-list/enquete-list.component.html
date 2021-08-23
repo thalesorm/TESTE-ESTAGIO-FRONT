@@ -1,0 +1,79 @@
+<div class="list row">
+    <div class="col-md-8">
+      <div class="input-group mb-3">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Search by title"
+            
+        />
+        <div class="input-group-append">
+          <button
+            class="btn btn-outline-secondary"
+            type="button"
+            (click)="searchTitle()"
+          >
+            Search
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <h4>Lista de Enquetes</h4>
+      <ul class="list-group">
+        <li
+          class="list-group-item"
+          *ngFor="let enquete of enquetes; let i = index"
+          [class.active]="i == currentIndex"
+          (click)="setActiveTutorial(enquete, i)"
+        >
+          {{ enquete.title }}
+          
+        </li>
+      </ul>
+      
+    </div>
+    <div class="col-md-6">
+      <div *ngIf="currentEnquete.id">
+        <h4>Opção de Votos</h4>
+        <div>
+          <label><strong>Title:</strong></label> {{ currentEnquete.title }}
+        </div>
+        <div>
+          <label><strong>Data de Inicio:</strong></label>
+          {{ currentEnquete.dateStart  | date:'dd/MM/yyyy'}}
+        </div>
+        <div>
+          <label><strong>Data do Fim:</strong></label>
+          {{ currentEnquete.dateEnd  | date:'dd/MM/yyyy'}}
+        </div>
+        <div>
+          <label><strong>Status:</strong></label>
+          {{ currentEnquete.status }}
+        </div>
+        <div >
+          <label><strong>Opçoes:</strong></label>
+         <li *ngFor="let option of currentEnquete.options ;let j = index ">
+          <button type="button"  class="" *ngIf="setVote && currentEnquete.status != 'Finalizado'"(click)="vote(option.id)">Votar
+           
+          </button>
+           <h6 *ngFor="let vote of option.votes; let j = index; let last = last;" >
+             <p *ngIf="last"> Votos Total = {{j + 1}}
+
+             </p>
+            </h6> - {{option.title}} 
+
+
+          </li>-->
+          
+        </div>
+  
+  
+      </div>
+  
+      <div *ngIf="!currentEnquete">
+        <br />
+        <p>Please click on a Tutorial...</p>
+      </div>
+    </div>
+  </div>
